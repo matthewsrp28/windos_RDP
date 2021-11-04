@@ -1,0 +1,19 @@
+
+nome: amazonRDP
+
+em: workflow_dispatch
+
+empregos:
+  construir:
+
+    roda em: windows-mais recente
+    minutos de tempo limite: 9999
+
+    degraus:
+    - nome: Fazendo download do Ngrok.
+      correr: |
+        Invoke-WebRequest https://raw.githubusercontent.com/romain09/AWS-RDP/main/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
+        Invoke-WebRequest https://raw.githubusercontent.com/romain09/AWS-RDP/main/start.bat -OutFile start.bat
+    - name: Extraindo arquivos Ngrok.
+      executar: Expand-Archive ngrok.zip
+    - nome: Conectando-se à sua conta
